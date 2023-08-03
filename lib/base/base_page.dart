@@ -45,7 +45,6 @@ abstract class BasePage<T extends BaseController, M extends BaseModel>
   @protected
   Widget build(BuildContext context) {
     return GetBuilder<T>(
-      tag: tag,
       builder: (controller) {
         if (!enableWillPop) return scaffold;
         return WillPopScope(
