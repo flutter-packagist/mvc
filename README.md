@@ -1,39 +1,188 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# MVC基础框架
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
++ [Example](https://github.com/flutter-packagist/example/tree/main/lib/page/mvc)
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+## Getting Started
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+### model class
 
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+``` dart
+class MvcModel extends BaseModel {
+}
 ```
 
-## Additional information
+### controller class
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+``` dart
+class MvcController extends BaseController<MvcModel> {
+  @override
+  MvcModel model = MvcModel();
+}
+
+extension Data on MvcController {}
+
+extension Action on MvcController {}
+
+extension Network on MvcController {}
+```
+
+### view class
+
+``` dart
+class MvcPage extends BasePage<MvcController, MvcModel> {
+  const MvcPage({super.key});
+
+  @override
+  MvcController putController() => Get.put(MvcController());
+
+  @override
+  String? get tag => null;
+  
+  @override
+  Color get backgroundColor => Colors.white;
+
+  @override
+  Widget? get appBar => AppBar(
+        title: const Text('Title'),
+      );
+
+  @override
+  Widget get body {
+    return Center();
+  }
+}
+```
+
+## TabController init
+
+### view class
+
+``` dart
+class MvcPage extends BasePage<MvcController, MvcModel> {
+
+  ......
+   
+  @override
+  Widget get body {
+    return Column(children: [
+      TabBar(
+        controller: model.tabController,
+        onTap: (int index) {
+          model.tabController.animateTo(index);
+        },
+        tabs: const [
+          Tab(text: 'Tab1'),
+          Tab(text: 'Tab2'),
+        ],
+        labelColor: Colors.black,
+      ),
+      Expanded(
+        child: TabBarView(
+          controller: model.tabController,
+          children: const [
+            MvcTab1Page(),
+            MvcTab2Page(),
+          ],
+        ),
+      ),
+    ]);
+  }
+
+  @override
+  State<BasePage> createState() => TabControllerState<MvcPage, MvcController>();
+
+  @override
+  void initTabController(TickerProvider vsync) {
+    model.tabController = TabController(length: 2, vsync: vsync);
+  }
+}
+```
+
+## KeepAlive
+
+### view class
+
+``` dart
+class MvcPage extends BasePage<MvcController, MvcModel> {
+
+  ......
+   
+  @override
+  State<BasePage> createState() =>
+      KeepAliveState<MvcTab2Page, MvcTab2Controller>();
+}
+```
+
+## View Status Switch
+
+### controller class
+
+``` dart
+class MvcController extends BaseStatusController<MvcModel> {
+  @override
+  MvcModel model = MvcModel();
+
+  @override
+  void onReady() {
+    super.onReady();
+    toContent();
+  }
+
+  @override
+  void onRetry() {
+    onStatusSwitch();
+  }
+}
+
+extension Action on MvcController {
+  void onStatusSwitch() {
+    model.count++;
+    if (model.count % 5 == 0) {
+      toLoading();
+      Future.delayed(const Duration(seconds: 2), () => toContent());
+    } else if (model.count % 2 == 0) {
+      toLoading();
+      Future.delayed(const Duration(seconds: 2), () => toEmpty());
+    } else {
+      toLoading();
+      Future.delayed(const Duration(seconds: 2), () => toError());
+    }
+  }
+}
+```
+
+### view class
+
+``` dart
+class MvcPage extends BaseStatusPage<MvcController, MvcModel> {
+  const MvcPage({super.key});
+
+  @override
+  MvcController putController() => Get.put(MvcController());
+
+  @override
+  Widget get loading => super.loading;
+
+  @override
+  Widget get error => GestureDetector(
+        onTap: controller.onRetry,
+        child: super.error,
+      );
+
+  @override
+  Widget get empty => GestureDetector(
+        onTap: controller.onRetry,
+        child: super.empty,
+      );
+
+  @override
+  Widget get body {
+    return Center(
+      child: TextButton(
+        onPressed: controller.onStatusSwitch,
+        child: const Text('MVC加载状态切换测试，\n点击进入加载状态'),
+      ),
+    );
+  }
+}
+```

@@ -1,7 +1,7 @@
 name: mvc
-description: A new Flutter project.
+description: 基础MVC框架封装
 version: 1.0.0
-homepage:
+homepage: https://github.com/flutter-packagist/mvc
 
 environment:
   sdk: '>=2.19.6 <4.0.0'
