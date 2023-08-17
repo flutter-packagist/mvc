@@ -1,6 +1,6 @@
 name: mvc
 description: 基础MVC框架封装
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/flutter-packagist/mvc
 
 environment:
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  get: 4.6.5
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:
