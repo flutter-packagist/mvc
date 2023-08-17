@@ -5,6 +5,7 @@ import 'package:mvc/base/mvc_setting.dart';
 import 'base_controller.dart';
 import 'base_model.dart';
 import 'base_page_interface.dart';
+import 'page_stack.dart';
 
 abstract class BasePage<T extends BaseController, M extends BaseModel>
     extends StatefulWidget implements GetXInterface<T, M>, PageInterface {
@@ -15,14 +16,22 @@ abstract class BasePage<T extends BaseController, M extends BaseModel>
     if (Get.isRegistered<T>(tag: tag)) {
       return Get.find<T>(tag: tag);
     }
-    return putController();
+    return Get.put<T>(binding, tag: tag);
   }
 
   @override
   M get model => controller.model as M;
 
   @override
-  String? get tag => null;
+  bool? get reuseController => true;
+
+  @override
+  String? get tag {
+    if (reuseController == false) {
+      return PageStack.current;
+    }
+    return null;
+  }
 
   @override
   Color get backgroundColor => MvcSetting().backgroundColor;
@@ -45,6 +54,7 @@ abstract class BasePage<T extends BaseController, M extends BaseModel>
   @protected
   Widget build(BuildContext context) {
     return GetBuilder<T>(
+      tag: tag,
       builder: (controller) {
         if (!enableWillPop) return scaffold;
         return WillPopScope(
@@ -111,7 +121,8 @@ class AutoDisposeState<P extends BasePage, T extends BaseController>
     extends State<P> {
   @override
   void initState() {
-    widget.putController();
+    PageStack.push();
+    Get.put<T>(widget.binding as T, tag: widget.tag);
     super.initState();
   }
 
@@ -123,6 +134,7 @@ class AutoDisposeState<P extends BasePage, T extends BaseController>
   @override
   void dispose() {
     Get.delete<T>(tag: widget.tag);
+    PageStack.pop();
     super.dispose();
   }
 }

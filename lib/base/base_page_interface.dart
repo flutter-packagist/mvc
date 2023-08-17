@@ -49,5 +49,7 @@ abstract class GetXInterface<T, M> {
 
   String? get tag;
 
-  T putController();
+  bool? get reuseController;
+
+  T get binding;
 }
