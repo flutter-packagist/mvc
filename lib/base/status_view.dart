@@ -20,7 +20,6 @@ class StatusLoading extends StatelessWidget {
             text ?? "加载中...",
             style: const TextStyle(
               color: Color(0xFF999999),
-              fontSize: 28,
               decoration: TextDecoration.none,
             ),
           ),
@@ -42,7 +41,6 @@ class StatusEmpty extends StatelessWidget {
         text ?? "暂无数据",
         style: const TextStyle(
           color: Color(0xFF999999),
-          fontSize: 28,
           decoration: TextDecoration.none,
         ),
       ),
@@ -67,7 +65,6 @@ class StatusError extends StatelessWidget {
               "Σ(oﾟдﾟoﾉ)",
               style: TextStyle(
                 color: Color(0xFF999999),
-                fontSize: 28,
                 decoration: TextDecoration.none,
               ),
             ),
@@ -76,7 +73,6 @@ class StatusError extends StatelessWidget {
               "加载失败~",
               style: TextStyle(
                 color: Color(0xFF999999),
-                fontSize: 28,
                 decoration: TextDecoration.none,
               ),
             ),

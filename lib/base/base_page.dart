@@ -161,3 +161,23 @@ class KeepAliveState<P extends BasePage, T extends BaseController>
     return widget.build(context);
   }
 }
+
+/// TickerProviderStateMixin 和 AutomaticKeepAliveClientMixin
+class TabControllerWithKeepAliveState<P extends BasePage,
+        T extends BaseController> extends AutoDisposeState<P, T>
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+  @override
+  void initState() {
+    super.initState();
+    widget.initTabController(this);
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return widget.build(context);
+  }
+}
