@@ -57,10 +57,10 @@ class StatusError extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onRetry,
-      child: const Center(
+      child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: const [
             Text(
               "Σ(oﾟдﾟoﾉ)",
               style: TextStyle(
