@@ -49,6 +49,8 @@ abstract class GetXInterface<T, M> {
 
   String? get tag;
 
+  String? get tagSymbol;
+
   bool? get reuseController;
 
   T get binding;

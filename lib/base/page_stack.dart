@@ -1,18 +1,21 @@
 class PageStack {
-  static int page = 0;
+  static Map<String, List<String>> tags = {};
 
-  static List<String> tags = [];
-
-  static void push() {
-    String tag = "page${page++}";
-    tags.add(tag);
+  static void push(String tagSymbol) {
+    if (!tags.keys.contains(tagSymbol)) {
+      tags[tagSymbol] = [];
+    }
+    tags[tagSymbol]!.add("$tagSymbol${tags[tagSymbol]!.length}");
   }
 
-  static void pop() {
-    tags.removeLast();
+  static void pop(String tagSymbol) {
+    tags[tagSymbol]!.removeLast();
+    if (tags[tagSymbol]!.isEmpty) {
+      tags.remove(tagSymbol);
+    }
   }
 
-  static String get current {
-    return tags.last;
+  static String current(String tagSymbol) {
+    return tags[tagSymbol]!.last;
   }
 }

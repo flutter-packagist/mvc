@@ -26,9 +26,12 @@ abstract class BasePage<T extends BaseController, M extends BaseModel>
   bool? get reuseController => true;
 
   @override
+  String get tagSymbol => "page";
+
+  @override
   String? get tag {
     if (reuseController == false) {
-      return PageStack.current;
+      return PageStack.current(tagSymbol);
     }
     return null;
   }
@@ -121,7 +124,7 @@ class AutoDisposeState<P extends BasePage, T extends BaseController>
     extends State<P> {
   @override
   void initState() {
-    PageStack.push();
+    PageStack.push(widget.tagSymbol);
     Get.put<T>(widget.binding as T, tag: widget.tag);
     super.initState();
   }
@@ -134,7 +137,7 @@ class AutoDisposeState<P extends BasePage, T extends BaseController>
   @override
   void dispose() {
     Get.delete<T>(tag: widget.tag);
-    PageStack.pop();
+    PageStack.pop(widget.tagSymbol);
     super.dispose();
   }
 }
