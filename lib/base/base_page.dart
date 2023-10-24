@@ -122,10 +122,12 @@ abstract class BaseStatusPage<T extends BaseStatusController,
 /// 用于控制Controller的创建和销毁
 class AutoDisposeState<P extends BasePage, T extends BaseController>
     extends State<P> {
+  String currentTag = "";
+
   @override
   void initState() {
-    PageStack.push(widget.tagSymbol);
-    Get.put<T>(widget.binding as T, tag: widget.tag);
+    currentTag = PageStack.push(widget.tagSymbol);
+    Get.put<T>(widget.binding as T, tag: currentTag);
     super.initState();
   }
 
@@ -136,8 +138,8 @@ class AutoDisposeState<P extends BasePage, T extends BaseController>
 
   @override
   void dispose() {
-    Get.delete<T>(tag: widget.tag);
-    PageStack.pop(widget.tagSymbol);
+    Get.delete<T>(tag: currentTag);
+    PageStack.pop(widget.tagSymbol, currentTag);
     super.dispose();
   }
 }

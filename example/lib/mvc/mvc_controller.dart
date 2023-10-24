@@ -28,6 +28,12 @@ extension Action on MvcController {
       builder: (context) => const MvcPage(),
     ));
   }
+
+  void replace() {
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+      builder: (context) => const MvcPage(),
+    ));
+  }
 }
 
 extension Network on MvcController {}

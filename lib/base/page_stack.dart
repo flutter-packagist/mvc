@@ -1,17 +1,24 @@
 class PageStack {
   static Map<String, List<String>> tags = {};
+  static Map<String, int> tagsAutoIncrease = {};
 
-  static void push(String tagSymbol) {
+  static String push(String tagSymbol) {
     if (!tags.keys.contains(tagSymbol)) {
       tags[tagSymbol] = [];
+      tagsAutoIncrease[tagSymbol] = 0;
     }
-    tags[tagSymbol]!.add("$tagSymbol${tags[tagSymbol]!.length}");
+    String tag =
+        "$tagSymbol${tagsAutoIncrease[tagSymbol]}${tags[tagSymbol]!.length}";
+    tags[tagSymbol]!.add(tag);
+    tagsAutoIncrease[tagSymbol] = (tagsAutoIncrease[tagSymbol] ?? 0) + 1;
+    return tag;
   }
 
-  static void pop(String tagSymbol) {
-    tags[tagSymbol]!.removeLast();
+  static void pop(String tagSymbol, String value) {
+    tags[tagSymbol]!.remove(value);
     if (tags[tagSymbol]!.isEmpty) {
       tags.remove(tagSymbol);
+      tagsAutoIncrease.remove(tagSymbol);
     }
   }
 

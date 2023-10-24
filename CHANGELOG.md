@@ -1,3 +1,7 @@
+## 1.0.4
+
+* fixed: 使用replace的方式进行页面替换时，多页面不复用controller的规则错乱
+
 ## 1.0.3
 
 * 支持多页面不复用controller
