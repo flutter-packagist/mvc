@@ -23,14 +23,14 @@ abstract class BasePage<T extends BaseController, M extends BaseModel>
   M get model => controller.model as M;
 
   @override
-  bool? get reuseController => true;
+  bool get reuseController => true;
 
   @override
   String get tagSymbol => "page";
 
   @override
   String? get tag {
-    if (reuseController == false) {
+    if (!reuseController) {
       return PageStack.current(tagSymbol);
     }
     return null;
@@ -122,11 +122,13 @@ abstract class BaseStatusPage<T extends BaseStatusController,
 /// 用于控制Controller的创建和销毁
 class AutoDisposeState<P extends BasePage, T extends BaseController>
     extends State<P> {
-  String currentTag = "";
+  String? currentTag;
 
   @override
   void initState() {
-    currentTag = PageStack.push(widget.tagSymbol);
+    if (!widget.reuseController) {
+      currentTag = PageStack.push(widget.tagSymbol);
+    }
     Get.put<T>(widget.binding as T, tag: currentTag);
     super.initState();
   }
@@ -139,7 +141,9 @@ class AutoDisposeState<P extends BasePage, T extends BaseController>
   @override
   void dispose() {
     Get.delete<T>(tag: currentTag);
-    PageStack.pop(widget.tagSymbol, currentTag);
+    if (!widget.reuseController) {
+      PageStack.pop(widget.tagSymbol, currentTag);
+    }
     super.dispose();
   }
 }

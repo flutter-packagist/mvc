@@ -16,7 +16,7 @@ class MvcPage extends BasePage<MvcController, MvcModel> {
   String get tagSymbol => "mvc";
 
   @override
-  bool? get reuseController => false;
+  bool get reuseController => false;
 
   @override
   Widget build(BuildContext context) {

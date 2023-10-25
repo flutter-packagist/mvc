@@ -14,7 +14,7 @@ class PageStack {
     return tag;
   }
 
-  static void pop(String tagSymbol, String value) {
+  static void pop(String tagSymbol, String? value) {
     tags[tagSymbol]!.remove(value);
     if (tags[tagSymbol]!.isEmpty) {
       tags.remove(tagSymbol);

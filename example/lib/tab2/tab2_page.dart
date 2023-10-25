@@ -17,7 +17,7 @@ class Tab2Page extends BasePage<Tab2Controller, Tab2Model> {
   String get tagSymbol => "tab2";
 
   @override
-  bool? get reuseController => false;
+  bool get reuseController => false;
 
   @override
   Widget get body {
