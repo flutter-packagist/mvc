@@ -130,6 +130,7 @@ class AutoDisposeState<P extends BasePage, T extends BaseController>
       currentTag = PageStack.push(widget.tagSymbol);
     }
     Get.put<T>(widget.binding as T, tag: currentTag);
+    widget.controller.context = context;
     super.initState();
   }
 

@@ -1,3 +1,8 @@
+## 1.0.5
+
+* 在controller中新增BuildContext属性
+* 在controller中新增方法：onKeyboardShow、onKeyboardHide，用于键盘弹出和收起时回调
+
 ## 1.0.4
 
 * fixed: 使用replace的方式进行页面替换时，多页面不复用controller的规则错乱
