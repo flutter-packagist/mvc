@@ -5,6 +5,8 @@ abstract class PageInterface {
 
   bool get extendBodyBehindAppBar;
 
+  bool get extendBody;
+
   bool get enableWillPop;
 
   double get appBarHeight;

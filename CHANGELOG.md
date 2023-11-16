@@ -2,6 +2,7 @@
 
 * 在controller中新增BuildContext属性
 * 在controller中新增方法：onKeyboardShow、onKeyboardHide，用于键盘弹出和收起时回调
+* 在page中新增属性：extendBody，用于控制页面内容是否延伸到底部
 
 ## 1.0.4
 

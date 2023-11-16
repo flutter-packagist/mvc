@@ -43,6 +43,9 @@ abstract class BasePage<T extends BaseController, M extends BaseModel>
   bool get extendBodyBehindAppBar => false;
 
   @override
+  bool get extendBody => false;
+
+  @override
   bool get enableWillPop => false;
 
   @override
@@ -72,6 +75,7 @@ abstract class BasePage<T extends BaseController, M extends BaseModel>
   Widget get scaffold {
     return Scaffold(
       extendBodyBehindAppBar: extendBodyBehindAppBar,
+      extendBody: extendBody,
       backgroundColor: backgroundColor,
       appBar: appBar != null
           ? PreferredSize(
