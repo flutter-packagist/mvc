@@ -1,3 +1,7 @@
+## 1.0.6
+
+* fixed: BuildContext未挂载判断
+
 ## 1.0.5
 
 * 在controller中新增BuildContext属性

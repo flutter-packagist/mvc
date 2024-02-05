@@ -64,6 +64,7 @@ abstract class BaseController<T extends BaseModel> extends GetxController
   void didChangeMetrics() {
     super.didChangeMetrics();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!context.mounted) return;
       bool hide = MediaQuery.of(context).viewInsets.bottom == 0;
       if (hide) {
         onKeyboardHide();
