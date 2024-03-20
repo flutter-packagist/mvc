@@ -1,3 +1,7 @@
+## 1.0.7
+
+* 移除controller中的onKeyboardShow、onKeyboardHide
+
 ## 1.0.6
 
 * fixed: BuildContext未挂载判断

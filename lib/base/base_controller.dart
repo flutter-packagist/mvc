@@ -20,16 +20,8 @@ abstract class LifecycleControl {
   void onPause() {}
 }
 
-abstract class KeyboardControl {
-  /// 键盘弹出
-  void onKeyboardShow() {}
-
-  /// 键盘收起
-  void onKeyboardHide() {}
-}
-
 abstract class BaseController<T extends BaseModel> extends GetxController
-    with WidgetsBindingObserver, LifecycleControl, KeyboardControl
+    with WidgetsBindingObserver, LifecycleControl
     implements ModelSetter<T>, ActionControl {
   late BuildContext context;
 
@@ -58,20 +50,6 @@ abstract class BaseController<T extends BaseModel> extends GetxController
     } else if (state == AppLifecycleState.paused) {
       onPause();
     }
-  }
-
-  @override
-  void didChangeMetrics() {
-    super.didChangeMetrics();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!context.mounted) return;
-      bool hide = MediaQuery.of(context).viewInsets.bottom == 0;
-      if (hide) {
-        onKeyboardHide();
-      } else {
-        onKeyboardShow();
-      }
-    });
   }
 }
 
