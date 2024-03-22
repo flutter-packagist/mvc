@@ -58,6 +58,9 @@ abstract class BasePage<T extends BaseController, M extends BaseModel>
   Widget? get bottomBar => null;
 
   @protected
+  void init() {}
+
+  @protected
   Widget build(BuildContext context) {
     return GetBuilder<T>(
       tag: tag,
@@ -135,6 +138,7 @@ class AutoDisposeState<P extends BasePage, T extends BaseController>
     }
     Get.put<T>(widget.binding as T, tag: currentTag);
     widget.controller.context = context;
+    widget.init();
     super.initState();
   }
 

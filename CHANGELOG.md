@@ -1,6 +1,7 @@
 ## 1.0.7
 
 * 移除controller中的onKeyboardShow、onKeyboardHide
+* 在page中新增方法：init
 
 ## 1.0.6
 
