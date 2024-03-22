@@ -55,5 +55,7 @@ abstract class GetXInterface<T, M> {
 
   bool? get reuseController;
 
+  bool? get permanentController;
+
   T get binding;
 }

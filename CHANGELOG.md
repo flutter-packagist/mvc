@@ -1,7 +1,8 @@
 ## 1.0.7
 
 * 移除controller中的onKeyboardShow、onKeyboardHide
-* 在page中新增方法：init
+* 在page中新增方法：init，可用于初始化数据
+* 在page中新增参数：permanentController，用于控制是否永久保留controller
 
 ## 1.0.6
 

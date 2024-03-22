@@ -16,7 +16,7 @@ abstract class BasePage<T extends BaseController, M extends BaseModel>
     if (Get.isRegistered<T>(tag: tag)) {
       return Get.find<T>(tag: tag);
     }
-    return Get.put<T>(binding, tag: tag);
+    return Get.put<T>(binding, tag: tag, permanent: permanentController);
   }
 
   @override
@@ -24,6 +24,9 @@ abstract class BasePage<T extends BaseController, M extends BaseModel>
 
   @override
   bool get reuseController => true;
+
+  @override
+  bool get permanentController => false;
 
   @override
   String get tagSymbol => "page";
@@ -136,7 +139,8 @@ class AutoDisposeState<P extends BasePage, T extends BaseController>
     if (!widget.reuseController) {
       currentTag = PageStack.push(widget.tagSymbol);
     }
-    Get.put<T>(widget.binding as T, tag: currentTag);
+    Get.put<T>(widget.binding as T,
+        tag: currentTag, permanent: widget.permanentController);
     widget.controller.context = context;
     widget.init();
     super.initState();
