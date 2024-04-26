@@ -32,8 +32,12 @@ abstract class BasePage<T extends BaseController, M extends BaseModel>
   String get tagSymbol => "page";
 
   @override
+  String? get tagHotReload => null;
+
+  @override
   String? get tag {
     if (!reuseController) {
+      if (tagHotReload != null) return tagHotReload;
       return PageStack.current(tagSymbol);
     }
     return null;
@@ -100,6 +104,12 @@ abstract class BasePage<T extends BaseController, M extends BaseModel>
   @override
   State<BasePage> createState() => AutoDisposeState<BasePage, T>();
 
+  /// 满足以下条件时使用，为了防止热重载而导致GlobalKey被重复使用：
+  /// 1.页面需要重复跳转 且reuseController为false
+  /// 2.页面中引用了controller或者model中声明且已经创建的GlobalKey对象
+  @protected
+  void initHotReloadTag(String? tag) {}
+
   /// 仅在 createState 为 TabControllerState 时使用
   @protected
   void initTabController(TickerProvider vsync) {}
@@ -138,6 +148,7 @@ class AutoDisposeState<P extends BasePage, T extends BaseController>
   void initState() {
     if (!widget.reuseController) {
       currentTag = PageStack.push(widget.tagSymbol);
+      widget.initHotReloadTag(currentTag);
     }
     Get.put<T>(widget.binding as T,
         tag: currentTag, permanent: widget.permanentController);
@@ -148,6 +159,7 @@ class AutoDisposeState<P extends BasePage, T extends BaseController>
 
   @override
   Widget build(BuildContext context) {
+    widget.initHotReloadTag(currentTag);
     return widget.build(context);
   }
 

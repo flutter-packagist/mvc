@@ -19,12 +19,6 @@ class MvcPage extends BasePage<MvcController, MvcModel> {
   bool get reuseController => false;
 
   @override
-  Widget build(BuildContext context) {
-    controller.context = context;
-    return super.build(context);
-  }
-
-  @override
   Widget? get appBar => AppBar(
         title: const Text('示例'),
       );
@@ -49,6 +43,10 @@ class MvcPage extends BasePage<MvcController, MvcModel> {
           TextButton(
             onPressed: controller.replace,
             child: const Text('Replace'),
+          ),
+          TextButton(
+            onPressed: controller.globalKey,
+            child: const Text('GlobalKey'),
           ),
           const TabBar(tabs: [
             Tab(text: 'Tab1'),

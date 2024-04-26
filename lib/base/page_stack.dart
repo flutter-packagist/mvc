@@ -7,8 +7,8 @@ class PageStack {
       tags[tagSymbol] = [];
       tagsAutoIncrease[tagSymbol] = 0;
     }
-    String tag =
-        "$tagSymbol${tagsAutoIncrease[tagSymbol]}${tags[tagSymbol]!.length}";
+    String tagSort = "-sort-${tagsAutoIncrease[tagSymbol]}";
+    String tag = "$tagSymbol$tagSort";
     tags[tagSymbol]!.add(tag);
     tagsAutoIncrease[tagSymbol] = (tagsAutoIncrease[tagSymbol] ?? 0) + 1;
     return tag;
@@ -16,13 +16,14 @@ class PageStack {
 
   static void pop(String tagSymbol, String? value) {
     tags[tagSymbol]!.remove(value);
+    tagsAutoIncrease[tagSymbol] = tagsAutoIncrease[tagSymbol]! - 1;
     if (tags[tagSymbol]!.isEmpty) {
       tags.remove(tagSymbol);
       tagsAutoIncrease.remove(tagSymbol);
     }
   }
 
-  static String current(String tagSymbol) {
-    return tags[tagSymbol]!.last;
+  static String? current(String tagSymbol) {
+    return tags[tagSymbol]?.last;
   }
 }
