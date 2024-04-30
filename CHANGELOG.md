@@ -1,3 +1,8 @@
+## 1.0.8
+
+* fixed: 修复热重载导致GlobalKey被重复使用的问题并新增相关示例
+* feat
+
 ## 1.0.7
 
 * 移除controller中的onKeyboardShow、onKeyboardHide
