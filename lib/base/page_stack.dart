@@ -16,7 +16,6 @@ class PageStack {
 
   static void pop(String tagSymbol, String? value) {
     tags[tagSymbol]!.remove(value);
-    tagsAutoIncrease[tagSymbol] = tagsAutoIncrease[tagSymbol]! - 1;
     if (tags[tagSymbol]!.isEmpty) {
       tags.remove(tagSymbol);
       tagsAutoIncrease.remove(tagSymbol);

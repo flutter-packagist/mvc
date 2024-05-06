@@ -1,7 +1,7 @@
 ## 1.0.8
 
 * fixed: 修复热重载导致GlobalKey被重复使用的问题并新增相关示例
-* feat
+* fixed: 修复在PageView中controller刚创建就被回收的问题
 
 ## 1.0.7
 
