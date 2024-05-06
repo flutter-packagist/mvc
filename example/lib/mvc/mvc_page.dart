@@ -44,10 +44,6 @@ class MvcPage extends BasePage<MvcController, MvcModel> {
             onPressed: controller.replace,
             child: const Text('Replace'),
           ),
-          TextButton(
-            onPressed: controller.globalKey,
-            child: const Text('GlobalKey'),
-          ),
           const TabBar(tabs: [
             Tab(text: 'Tab1'),
             Tab(text: 'Tab2'),

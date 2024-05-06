@@ -2,7 +2,6 @@ import 'package:example/mvc/mvc_page.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc/base/base_controller.dart';
 
-import '../key/key_page.dart';
 import 'mvc_model.dart';
 
 class MvcController extends BaseController<MvcModel> {
@@ -31,12 +30,6 @@ extension Action on MvcController {
   void replace() {
     Navigator.of(context).pushReplacement(MaterialPageRoute(
       builder: (context) => const MvcPage(),
-    ));
-  }
-
-  void globalKey() {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => KeyPage(),
     ));
   }
 }

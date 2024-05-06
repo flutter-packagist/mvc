@@ -53,6 +53,7 @@ class KeyPage extends BasePage<KeyController, KeyModel> {
             height: 50,
             width: double.infinity,
             color: Colors.blue,
+            child: const Center(child: Text('页面重复跳转')),
           ),
         ),
       ]),
