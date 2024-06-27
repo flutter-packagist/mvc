@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvc/base/lifecycle_observer.dart';
 
 import 'main/main_page.dart';
 
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorObservers: [lifecycleObserver],
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

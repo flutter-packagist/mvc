@@ -1,3 +1,7 @@
+## 1.1.0
+
+* feat: 新增生命周期回调 `onFrontStage`、`onBackStage`、`onResume` 和 `onPause`
+
 ## 1.0.8
 
 * fixed: 修复热重载导致GlobalKey被重复使用的问题并新增相关示例

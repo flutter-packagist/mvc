@@ -14,9 +14,15 @@ abstract class ActionControl {
 
 abstract class LifecycleControl {
   /// 回到前台
-  void onResume() {}
+  void onFrontStage() {}
 
   /// 退到后台
+  void onBackStage() {}
+
+  /// 页面可见
+  void onResume() {}
+
+  /// 页面不可见
   void onPause() {}
 }
 
@@ -46,9 +52,11 @@ abstract class BaseController<T extends BaseModel> extends GetxController
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
+      onFrontStage();
       onResume();
     } else if (state == AppLifecycleState.paused) {
       onPause();
+      onBackStage();
     }
   }
 }

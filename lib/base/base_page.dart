@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mvc/base/lifecycle_observer.dart';
 import 'package:mvc/base/mvc_setting.dart';
 
 import 'base_controller.dart';
@@ -141,7 +142,7 @@ abstract class BaseStatusPage<T extends BaseStatusController,
 
 /// 用于控制Controller的创建和销毁
 class AutoDisposeState<P extends BasePage, T extends BaseController>
-    extends State<P> {
+    extends State<P> with RouteAware {
   String? currentTag;
 
   @override
@@ -158,6 +159,12 @@ class AutoDisposeState<P extends BasePage, T extends BaseController>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    lifecycleObserver.subscribe(this, ModalRoute.of(context)!);
+  }
+
+  @override
   Widget build(BuildContext context) {
     widget.initHotReloadTag(currentTag);
     return widget.build(context);
@@ -165,11 +172,32 @@ class AutoDisposeState<P extends BasePage, T extends BaseController>
 
   @override
   void dispose() {
+    lifecycleObserver.unsubscribe(this);
     Get.delete<T>(tag: currentTag);
     if (!widget.reuseController) {
       PageStack.pop(widget.tagSymbol, currentTag);
     }
     super.dispose();
+  }
+
+  @override
+  void didPush() {
+    widget.controller.onResume();
+  }
+
+  @override
+  void didPushNext() {
+    widget.controller.onPause();
+  }
+
+  @override
+  void didPop() {
+    widget.controller.onPause();
+  }
+
+  @override
+  void didPopNext() {
+    widget.controller.onResume();
   }
 }
 
