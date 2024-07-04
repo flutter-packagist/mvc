@@ -7,6 +7,14 @@ import 'key_page.dart';
 class KeyController extends BaseController<KeyModel> {
   @override
   KeyModel model = KeyModel();
+
+  @override
+  void onReady() {
+    super.onReady();
+    Future.delayed(const Duration(seconds: 1), () {
+      update();
+    });
+  }
 }
 
 extension Private on KeyController {}

@@ -1,6 +1,7 @@
 ## 1.1.0
 
 * feat: 新增生命周期回调 `onFrontStage`、`onBackStage`、`onResume` 和 `onPause`
+* feat: 解决页面重复跳转复用Controller导致GlobalKey复用问题，示例：KeyPage
 
 ## 1.0.8
 

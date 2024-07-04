@@ -8,21 +8,24 @@ import 'key_model.dart';
 class KeyPage extends BasePage<KeyController, KeyModel> {
   KeyPage({super.key});
 
-  String? hotReloadTag;
+  /// ======= 解决页面重复跳转复用Controller导致GlobalKey复用问题 start =======
+  String? repeatTag;
 
   @override
-  void initHotReloadTag(String? tag) {
-    hotReloadTag = tag;
+  void initRepeatTag(String? tag) {
+    repeatTag = tag;
   }
+
+  @override
+  String? get tagRepeat => repeatTag;
+
+  /// ======= 解决页面重复跳转复用Controller导致GlobalKey复用问题 end   =======
 
   @override
   KeyController get binding => KeyController();
 
   @override
   String get tagSymbol => "KeyPage";
-
-  @override
-  String? get tagHotReload => hotReloadTag;
 
   @override
   bool get reuseController => false;
@@ -38,10 +41,17 @@ class KeyPage extends BasePage<KeyController, KeyModel> {
       child: Column(children: [
         Expanded(
           child: SingleChildScrollView(
+            key: model.scrollKey,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               key: model.key,
-              children: [],
+              children: [
+                Container(
+                  height: 1000,
+                  color: Colors.red.shade200,
+                  child: const Center(child: Text('滚动区域')),
+                ),
+              ],
             ),
           ),
         ),

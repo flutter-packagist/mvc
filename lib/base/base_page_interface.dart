@@ -53,7 +53,7 @@ abstract class GetXInterface<T, M> {
 
   String? get tagSymbol;
 
-  String? get tagHotReload;
+  String? get tagRepeat;
 
   bool? get reuseController;
 

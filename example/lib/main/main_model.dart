@@ -9,7 +9,7 @@ import '../page_view/page_view_page.dart';
 class MainModel extends BaseModel {
   Map<String, Widget> pageData = {
     'TabBar mvc 页面回收': const MvcPage(),
-    'GlobalKey 导致HotReload报错的解决方法': KeyPage(),
+    '页面重复跳转复用Controller导致GlobalKey复用问题': KeyPage(),
     'PageView 滚动促进页面回收': const PageViewPage(),
     '生命周期': const LifecyclePage(),
   };
