@@ -1,3 +1,7 @@
+## 1.1.1
+
+* feat: 在page中新增属性：resizeToAvoidBottomInset，用于控制页面是否自动适应键盘弹出
+
 ## 1.1.0
 
 * feat: 新增生命周期回调 `onFrontStage`、`onBackStage`、`onResume` 和 `onPause`

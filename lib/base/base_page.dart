@@ -48,6 +48,9 @@ abstract class BasePage<T extends BaseController, M extends BaseModel>
   Color get backgroundColor => MvcSetting().backgroundColor;
 
   @override
+  bool get resizeToAvoidBottomInset => true;
+
+  @override
   bool get extendBodyBehindAppBar => false;
 
   @override
@@ -85,6 +88,7 @@ abstract class BasePage<T extends BaseController, M extends BaseModel>
   @override
   Widget get scaffold {
     return Scaffold(
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       extendBodyBehindAppBar: extendBodyBehindAppBar,
       extendBody: extendBody,
       backgroundColor: backgroundColor,

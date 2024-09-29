@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 abstract class PageInterface {
   Color get backgroundColor;
 
+  bool get resizeToAvoidBottomInset;
+
   bool get extendBodyBehindAppBar;
 
   bool get extendBody;
