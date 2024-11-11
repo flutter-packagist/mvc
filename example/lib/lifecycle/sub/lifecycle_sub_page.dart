@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mvc/base/base_page.dart';
+import 'package:packagist_mvc/base/base_page.dart';
 
 import 'lifecycle_sub_controller.dart';
 import 'lifecycle_sub_model.dart';

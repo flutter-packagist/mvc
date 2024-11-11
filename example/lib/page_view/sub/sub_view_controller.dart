@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:mvc/base/base_controller.dart';
+import 'package:packagist_mvc/base/base_controller.dart';
 
 import 'sub_view_model.dart';
 

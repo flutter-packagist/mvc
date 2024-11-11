@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mvc/base/base_page.dart';
+import 'package:packagist_mvc/base/base_page.dart';
 
 import 'sub_view_controller.dart';
 import 'sub_view_model.dart';

@@ -1,6 +1,6 @@
 import 'package:example/mvc/mvc_page.dart';
 import 'package:flutter/material.dart';
-import 'package:mvc/base/base_controller.dart';
+import 'package:packagist_mvc/base/base_controller.dart';
 
 import 'mvc_model.dart';
 

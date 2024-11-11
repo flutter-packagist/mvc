@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mvc/base/base_page.dart';
+import 'package:packagist_mvc/base/base_page.dart';
 
 import 'key_controller.dart';
 import 'key_model.dart';

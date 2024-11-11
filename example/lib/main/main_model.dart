@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:mvc/base/base_model.dart';
+import 'package:packagist_mvc/base/base_model.dart';
 
 import '../key/key_page.dart';
 import '../lifecycle/lifecycle_page.dart';

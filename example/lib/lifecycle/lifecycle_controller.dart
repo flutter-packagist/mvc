@@ -1,6 +1,6 @@
 import 'package:example/lifecycle/sub/lifecycle_sub_page.dart';
 import 'package:flutter/material.dart';
-import 'package:mvc/base/base_controller.dart';
+import 'package:packagist_mvc/base/base_controller.dart';
 
 import 'lifecycle_model.dart';
 

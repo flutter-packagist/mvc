@@ -1,6 +1,6 @@
 import 'package:example/tab1/tab1_page.dart';
 import 'package:flutter/material.dart';
-import 'package:mvc/base/base_page.dart';
+import 'package:packagist_mvc/base/base_page.dart';
 
 import '../tab2/tab2_page.dart';
 import 'mvc_controller.dart';

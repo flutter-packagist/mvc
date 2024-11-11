@@ -1,6 +1,6 @@
 import 'package:example/page_view/sub/sub_view_page.dart';
 import 'package:flutter/material.dart';
-import 'package:mvc/base/base_page.dart';
+import 'package:packagist_mvc/base/base_page.dart';
 
 import 'page_view_controller.dart';
 import 'page_view_model.dart';

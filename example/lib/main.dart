@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mvc/base/lifecycle_observer.dart';
+import 'package:packagist_mvc/base/lifecycle_observer.dart';
 
 import 'main/main_page.dart';
 

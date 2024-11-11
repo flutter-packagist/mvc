@@ -1,3 +1,7 @@
+## 1.1.2
+
+* feat: 更新文档
+
 ## 1.1.1
 
 * feat: 在page中新增属性：resizeToAvoidBottomInset，用于控制页面是否自动适应键盘弹出

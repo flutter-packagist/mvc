@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mvc/base/lifecycle_observer.dart';
-import 'package:mvc/base/mvc_setting.dart';
 
 import 'base_controller.dart';
 import 'base_model.dart';
 import 'base_page_interface.dart';
+import 'lifecycle_observer.dart';
+import 'mvc_setting.dart';
 import 'page_stack.dart';
 
 abstract class BasePage<T extends BaseController, M extends BaseModel>
