@@ -156,7 +156,7 @@ class AutoDisposeState<P extends BasePage, T extends BaseController>
       widget.initRepeatTag(currentTag);
     }
     Get.put<T>(widget.binding as T,
-        tag: currentTag, permanent: widget.permanentController);
+        tag: widget.tag, permanent: widget.permanentController);
     widget.controller.context = context;
     widget.init();
     super.initState();
@@ -177,7 +177,7 @@ class AutoDisposeState<P extends BasePage, T extends BaseController>
   @override
   void dispose() {
     lifecycleObserver.unsubscribe(this);
-    Get.delete<T>(tag: currentTag);
+    Get.delete<T>(tag: widget.tag);
     if (!widget.reuseController) {
       PageStack.pop(widget.tagSymbol, currentTag);
     }

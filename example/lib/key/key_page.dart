@@ -13,7 +13,7 @@ class KeyPage extends BasePage<KeyController, KeyModel> {
 
   @override
   void initRepeatTag(String? tag) {
-    repeatTag = tag;
+    repeatTag = "111" + tag.toString();
   }
 
   @override

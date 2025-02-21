@@ -1,3 +1,7 @@
+## 1.1.3
+
+* fixed: 修复initRepeatTag修改tagRepeat时，controller未被回收的问题
+
 ## 1.1.2
 
 * feat: 更新文档
