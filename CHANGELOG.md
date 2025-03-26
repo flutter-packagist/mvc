@@ -1,5 +1,6 @@
 ## 1.1.4
 
+* feat: change LifecycleControl to mixin class
 * feat: 依赖库升级
 
 ## 1.1.3

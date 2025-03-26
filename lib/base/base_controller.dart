@@ -12,7 +12,7 @@ abstract class ActionControl {
   Future<bool> onWillPop();
 }
 
-abstract class LifecycleControl {
+abstract mixin class LifecycleControl {
   /// 回到前台
   void onFrontStage() {}
 
