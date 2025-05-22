@@ -6,9 +6,9 @@ import 'base_model.dart';
 import 'base_page.dart';
 
 // ignore: must_be_immutable
-abstract class BaseStatePage<T extends BaseStatusController,
+abstract class BaseStateStatusPage<T extends BaseStatusController,
     M extends BaseModel> extends BaseStatusPage<T, M> {
-  BaseStatePage({super.key});
+  BaseStateStatusPage({super.key});
 
   late final T initController;
 

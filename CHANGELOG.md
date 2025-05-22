@@ -1,3 +1,7 @@
+## 1.1.6
+
+* feat: export BaseStatePage、BaseStateStatusPage
+
 ## 1.1.5
 
 * feat: 新增BaseStatePage和BaseStateStatusPage解决重复页面跳转时，GlobalKey重复使用的问题
