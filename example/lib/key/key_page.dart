@@ -1,34 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:packagist_mvc/base/base_page.dart';
+import 'package:packagist_mvc/mvc.dart';
 
 import 'key_controller.dart';
 import 'key_model.dart';
 
 //ignore: must_be_immutable
-class KeyPage extends BasePage<KeyController, KeyModel> {
-  KeyPage({super.key});
-
-  /// ======= 解决页面重复跳转复用Controller导致GlobalKey复用问题 start =======
-  String? repeatTag;
-
-  @override
-  void initRepeatTag(String? tag) {
-    repeatTag = "111" + tag.toString();
+class KeyPage extends BaseStatePage<KeyController, KeyModel> {
+  KeyPage({super.key}) {
+    initController = KeyController();
   }
-
-  @override
-  String? get tagRepeat => repeatTag;
-
-  /// ======= 解决页面重复跳转复用Controller导致GlobalKey复用问题 end   =======
-
-  @override
-  KeyController get binding => KeyController();
-
-  @override
-  String get tagSymbol => "KeyPage";
-
-  @override
-  bool get reuseController => false;
 
   @override
   Widget? get appBar => AppBar(
