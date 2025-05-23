@@ -47,6 +47,8 @@ abstract class PageStatusInterface {
 }
 
 abstract class GetXInterface<T, M> {
+  bool get enableGetxMvc;
+
   T get controller;
 
   M get model;

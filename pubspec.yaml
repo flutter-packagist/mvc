@@ -1,6 +1,6 @@
 name: packagist_mvc
 description: 基础MVC框架封装
-version: 1.1.6
+version: 1.1.7
 homepage: https://github.com/flutter-packagist/mvc
 
 environment:

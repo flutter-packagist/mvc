@@ -13,6 +13,9 @@ abstract class BasePage<T extends BaseController, M extends BaseModel>
   const BasePage({super.key});
 
   @override
+  bool get enableGetxMvc => true;
+
+  @override
   T get controller {
     if (Get.isRegistered<T>(tag: tag)) {
       return Get.find<T>(tag: tag);
@@ -151,12 +154,14 @@ class AutoDisposeState<P extends BasePage, T extends BaseController>
 
   @override
   void initState() {
-    if (!widget.reuseController) {
-      currentTag = PageStack.push(widget.tagSymbol);
-      widget.initRepeatTag(currentTag);
+    if (widget.enableGetxMvc) {
+      if (!widget.reuseController) {
+        currentTag = PageStack.push(widget.tagSymbol);
+        widget.initRepeatTag(currentTag);
+      }
+      Get.put<T>(widget.binding as T,
+          tag: widget.tag, permanent: widget.permanentController);
     }
-    Get.put<T>(widget.binding as T,
-        tag: widget.tag, permanent: widget.permanentController);
     widget.controller.context = context;
     widget.init();
     super.initState();
@@ -170,16 +175,20 @@ class AutoDisposeState<P extends BasePage, T extends BaseController>
 
   @override
   Widget build(BuildContext context) {
-    widget.initRepeatTag(currentTag);
+    if (widget.enableGetxMvc) {
+      widget.initRepeatTag(currentTag);
+    }
     return widget.build(context);
   }
 
   @override
   void dispose() {
     lifecycleObserver.unsubscribe(this);
-    Get.delete<T>(tag: widget.tag);
-    if (!widget.reuseController) {
-      PageStack.pop(widget.tagSymbol, currentTag);
+    if (widget.enableGetxMvc) {
+      Get.delete<T>(tag: widget.tag);
+      if (!widget.reuseController) {
+        PageStack.pop(widget.tagSymbol, currentTag);
+      }
     }
     super.dispose();
   }

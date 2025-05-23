@@ -13,6 +13,9 @@ abstract class BaseStatePage<T extends BaseController, M extends BaseModel>
   late final T initController;
 
   @override
+  bool get enableGetxMvc => false;
+
+  @override
   T get binding => initController;
 
   @override

@@ -1,3 +1,7 @@
+## 1.1.7
+
+* feat: 添加enableGetxMvc来判断需要使用getx的控制器管理
+
 ## 1.1.6
 
 * feat: export BaseStatePage、BaseStateStatusPage
